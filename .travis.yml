@@ -1,19 +1,40 @@
-matrix:
-  include:
-    - name: CUDA 10.2
-      env:
-        - CUDAXX
-#       - CUDA=10.2.89-1
-#       - CUDA_APT=10-2
-#       - CUDA_SHORT=10.2
+# matrix:
+#   include:
+#     - name: CUDA 10.2
+#       env:
+#         - CUDAXX
+# #       - CUDA=10.2.89-1
+# #       - CUDA_APT=10-2
+# #       - CUDA_SHORT=10.2
      
-      dist: bionic
+#       dist: bionic
+dist: trusty
+env:
+  matrix:
+    - CUDA=10.1.105-1
+    
+before_install:
+  - export GHC=${CC:4}
+  - unset CC
+  - export PATH=/opt/alex/3.1.7/bin:/opt/happy/1.19.5/bin:$PATH
+  - export CUDA_INSTALL_EXTRA_LIBS=0
+  - source .travis/install-cuda-trusty.sh
+  - source .travis/install-stack.sh
+  
+  - echo "$(stack exec ghc -- --version) [$(stack exec ghc -- --print-project-git-commit-id 2> /dev/null || echo '?')]"
+  - stack --version
+  - nvcc --version
+    
 
 cache:
   timeout: 1000
   ccache: true
-  directories: 
-    - $HOME/.hunter
+#   directories: 
+#     - $HOME/.hunter
+  directories:
+    - $HOME/.stack
+    - $HOME/.local/bin
+    - $TRAVIS_BUILD_DIR/.stack-work
 script:
   - ./run.sh
   
