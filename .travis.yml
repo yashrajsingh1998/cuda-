@@ -26,15 +26,15 @@ before_install:
 #   - nvcc --version
     
 
-cache:
-  timeout: 1000
-  ccache: true
-#   directories: 
-#     - $HOME/.hunter
-  directories:
-    - $HOME/.stack
-    - $HOME/.local/bin
-    - $TRAVIS_BUILD_DIR/.stack-work
+# cache:
+#   timeout: 1000
+#   ccache: true
+# #   directories: 
+# #     - $HOME/.hunter
+#   directories:
+#     - $HOME/.stack
+#     - $HOME/.local/bin
+#     - $TRAVIS_BUILD_DIR/.stack-work
 script:
   - ./run.sh
   
