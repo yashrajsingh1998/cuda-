@@ -21,8 +21,8 @@ before_install:
 #   - source .travis/install-cuda-trusty.sh
 #   - source .travis/install-stack.sh
   
-  - echo "$(stack exec ghc -- --version) [$(stack exec ghc -- --print-project-git-commit-id 2> /dev/null || echo '?')]"
-  - stack --version
+#   - echo "$(stack exec ghc -- --version) [$(stack exec ghc -- --print-project-git-commit-id 2> /dev/null || echo '?')]"
+#   - stack --version
   - nvcc --version
     
 
